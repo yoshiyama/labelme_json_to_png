@@ -44,6 +44,8 @@ for json_file_path in tqdm.tqdm(list(json_dir_path.glob("*.json"))):
     print("go2")
     image = Image.open(str(temp_dir_path.joinpath("label.png"))).convert("P")
     origin_color_palette = image.getpalette()
+    print("origin_color_palette=", origin_color_palette)
+    # print(origin_color_palette)
     image_array = np.array(image)
 
     # Fix label.
@@ -54,13 +56,20 @@ for json_file_path in tqdm.tqdm(list(json_dir_path.glob("*.json"))):
             if label_name == "_background_":
                 continue
             label_indexes[label_name] = (image_array == label_num)
+            print(label_name)
+            print(label_num)
 
         for label_name, label_index in label_indexes.items():
             correct_label_num = correct_label_dict[label_name]
             image_array[label_index] = correct_label_num
-
+            print("correct_label_num\n")
+            print(correct_label_num)
+    print("first")
+    print(image_array)
     new_image = Image.fromarray(image_array, mode="P")
-    new_image.putpalette(origin_color_palette)
+    print(origin_color_palette)
+    new_pallete = new_image.putpalette(origin_color_palette)
+    print(new_image)
     new_image.save(str(out_dir_path.joinpath(json_file_path.name).with_suffix(".png")))
 
 # Post processing.
