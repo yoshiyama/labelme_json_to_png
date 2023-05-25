@@ -1,3 +1,9 @@
+# python labelme_json_to_png.py <LabelmeのJSONファイルが入っているフォルダ> -o=<出力先フォルダ> -label_file=<ラベルファイルのパス>
+# python labelme_json_to_png.py kuroda -o=kuroda_output -label_file=kuroda_txt
+
+#
+# ラベルファイルとは、セグメンテーション対象を記載したテキストファイル。例えば、kimura_txtとかを参照してください。
+
 from pathlib import Path
 import subprocess
 import shutil
@@ -54,6 +60,8 @@ for json_file_path in tqdm.tqdm(list(json_dir_path.glob("*.json"))):
         for label_num, label_name in enumerate(label_file):
             label_name = label_name.replace("\n", "")
             if label_name == "_background_":
+                continue
+            if label_name == "line":
                 continue
             label_indexes[label_name] = (image_array == label_num)
             print(label_name)
