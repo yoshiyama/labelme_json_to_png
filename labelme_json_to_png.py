@@ -1,4 +1,4 @@
-# python labelme_json_to_png.py <LabelmeのJSONファイルが入っているフォルダ> -o=<出力先フォルダ> -label_file=<ラベルファイルのパス>
+# python labelme_json_to_png.py <LabelmeのJSONファイルが入っているフォルダ.もとのjpgが入っていてもいい> -o=<出力先フォルダ> -label_file=<ラベルファイルのパス>
 # python labelme_json_to_png.py kuroda -o=kuroda_output -label_file=kuroda_txt
 
 #
