@@ -1,5 +1,7 @@
 # python json2jpeg10mask_cut.py /mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2/kiso3001.json /mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2/kiso3001.png 255 /mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2/kiso3001_mask_cut.png /mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2/kiso3001_cut.png
 
+#python json2jpeg10mask_cut.py /mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2/niekawa001.json /mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2/niekawa001.jpg 255 /mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2/niekawa001_mask_cut.png /mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2/niekawa001_cut.png
+
 
 import json
 import argparse

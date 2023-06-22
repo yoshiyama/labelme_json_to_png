@@ -1,23 +1,31 @@
 #!/bin/bash
 
-INPUT_DIR="/mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2"
-MASK_OUTPUT_DIR="/mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2_mask_cut"
-PIXEL_VALUE="255"
+# Paths
+JSON_IMG_DIR="/mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2"
+CROPPED_MASK_DIR="/mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2_mask_cut"  # REPLACE with the path to your mask output directory
+CROPPED_IMG_DIR="/mnt/c/Users/survey/Desktop/keikan_bridge/ROOT19/kiso3_niekawa_okuwa2_png_cut"    # REPLACE with the path to your image output directory
 
-for json_file in "$INPUT_DIR"/*.json
-do
-  base_name=$(basename "$json_file" .json)
-  if [ -f "$INPUT_DIR/$base_name.jpg" ]; then
-      img_file="$INPUT_DIR/$base_name.jpg"
-  elif [ -f "$INPUT_DIR/$base_name.png" ]; then
-      img_file="$INPUT_DIR/$base_name.png"
+# Pixel fill value
+FILL_VALUE=255
+
+# Python script
+PYTHON_SCRIPT="json2jpeg10mask_cut.py"
+
+for json_file in $JSON_IMG_DIR/*.json; do
+  base_name=$(basename $json_file .json)
+
+  # Check for corresponding png file
+  if [ -f "$JSON_IMG_DIR/$base_name.png" ]; then
+    img_file="$JSON_IMG_DIR/$base_name.png"
+  elif [ -f "$JSON_IMG_DIR/$base_name.jpg" ]; then
+    img_file="$JSON_IMG_DIR/$base_name.jpg"
   else
-      echo "Neither .jpg nor .png file found for $base_name"
-      continue
+    echo "No corresponding png or jpg file for $json_file"
+    continue
   fi
-  mask_output_path="$MASK_OUTPUT_DIR/$base_name_mask.png"
-  cropped_img_output_path="$INPUT_DIR/$base_name"_cropped_img.png
-  cropped_mask_output_path="$MASK_OUTPUT_DIR/$base_name"_cropped_mask.png
 
-  python json2jpeg10mask_cut.py "$json_file" "$img_file" "$PIXEL_VALUE" "$mask_output_path" "$cropped_img_output_path" "$cropped_mask_output_path"
+  cropped_mask_output_path="$CROPPED_MASK_DIR/${base_name}_mask_cut.png"
+  cropped_img_output_path="$CROPPED_IMG_DIR/${base_name}_cut.png"
+
+  python $PYTHON_SCRIPT $json_file $img_file $FILL_VALUE $cropped_mask_output_path $cropped_img_output_path
 done
