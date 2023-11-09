@@ -1,6 +1,7 @@
 # python labelme_json_to_png.py <LabelmeのJSONファイルが入っているフォルダ.もとのjpgが入っていてもいい> -o=<出力先フォルダ> -label_file=<ラベルファイルのパス>
 # python labelme_json_to_png.py kuroda -o=kuroda_output -label_file=kuroda_txt
 # python labelme_json_to_png_L.py /mnt/c/Users/survey/Desktop/keikan_bridge/CycleGAN_Mask/ROOT41/kiritori-gero1 -o=/mnt/c/Users/survey/Desktop/keikan_bridge/CycleGAN_Mask/ROOT41/kiritori-gero1_mask -class_name=hodoukyou -pixel_value=255
+# python labelme_json_to_png_L_fast.py /mnt/c/Users/survey/Desktop/keikan_bridge/CycleGAN_Mask/ROOT41/kiritori-gero1 -o=/mnt/c/Users/survey/Desktop/keikan_bridge/CycleGAN_Mask/ROOT41/kiritori-gero1_mask -class_name=hodoukyou -pixel_value=255
 
 # mask画像を作成するためのスクリプト
 # ラベルファイルとは、セグメンテーション対象を記載したテキストファイル。例えば、kimura_txtとかを参照してください。
